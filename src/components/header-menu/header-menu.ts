@@ -4,6 +4,8 @@ import { App, Page, Platform } from 'ionic-angular';
 import { HomePage } from '../../pages/home/home';
 import { AboutPage } from '../../pages/about/about';
 
+import { NavigationProvider } from '../../providers/navigation/navigation';
+
 @Component({
   selector: 'header-menu',
   templateUrl: 'header-menu.html'
@@ -12,7 +14,8 @@ export class HeaderMenuComponent {
   public pages: Array<{title: string, component: Page, icon: string}>;
 
   constructor(public app: App,
-              public platform: Platform) {
+              public platform: Platform,
+              private navigationProvider: NavigationProvider) {
 
     this.pages = [
       {title: 'Home', component: HomePage, icon: 'home'},
@@ -27,17 +30,23 @@ export class HeaderMenuComponent {
     this.nav = this.app.getRootNav();
   }
 
-  public openPage(page: Page) {
-    this.nav.setRoot(page.component);
+  public openPage(title: string) {
+    const page: Page = this.pages.find(page => page.title === title);
+
+    this.navigationProvider.push(page.component)
   }
 
   public logoutClicked() {
     // do logout
 
-    this.rootNav.push('HomePage');
+    this.navigationProvider.push(HomePage)
   }
 
   public exitClicked() {
-    this.platform.exitApp();
+    this.platform.ready().then(() => {
+      this.platform.exitApp();
+    }).catch(error => {
+      // TODO
+    });
   }
 }

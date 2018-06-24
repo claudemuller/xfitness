@@ -7,8 +7,9 @@ import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'about.html',
 })
 export class AboutPage {
-  private appName: string;
-  private appVersion: string;
+  public appName: string;
+  public appVersion: string;
+  public appVersionCode: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,

@@ -10,6 +10,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HeaderMenuComponent } from '../components/header-menu/header-menu';
 
+import { NavigationProvider } from '../providers/navigation/navigation';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -28,7 +30,8 @@ import { HeaderMenuComponent } from '../components/header-menu/header-menu';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    NavigationProvider
   ]
 })
 export class AppModule {}

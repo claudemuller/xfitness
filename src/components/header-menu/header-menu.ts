@@ -3,6 +3,7 @@ import { App, Platform } from 'ionic-angular';
 
 import { HomePage } from '../../pages/home/home';
 import { AboutPage } from '../../pages/about/about';
+import { SettingsPage } from '../../pages/settings/settings';
 
 import { NavigationProvider } from '../../providers/navigation/navigation';
 
@@ -23,7 +24,7 @@ export class HeaderMenuComponent {
       {title: 'Dashboard', component: HomePage, icon: 'home'},
       {title: 'Previous Session Stats', component: HomePage, icon: 'stats'},
       {title: 'User Management', component: HomePage, icon: 'people'},
-      {title: 'Settings', component: HomePage, icon: 'settings'},
+      {title: 'Settings', component: SettingsPage, icon: 'settings'},
       {title: 'About', component: AboutPage, icon: 'information-circle'}
     ];
   }

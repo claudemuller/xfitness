@@ -4,13 +4,13 @@ import { Page } from 'ionic-angular/navigation/nav-util';
 
 @Injectable()
 export class NavigationProvider {
-  private rootNav: NavController;
+  private _rootNav: NavController;
 
   public initRootNav(rootNav: NavController) {
-    this.rootNav = rootNav;
+    this._rootNav = rootNav;
   }
 
   public push(page: Page) {
-    this.rootNav.push(page);
+    this._rootNav.push(page);
   }
 }

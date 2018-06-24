@@ -6,6 +6,7 @@ import { AppVersion } from '@ionic-native/app-version';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AboutPage } from '../pages/about/about';
+import { SettingsPage } from '../pages/settings/settings';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -13,12 +14,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HeaderMenuComponent } from '../components/header-menu/header-menu';
 
 import { NavigationProvider } from '../providers/navigation/navigation';
+import { SettingsProvider } from '../providers/settings/settings';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     AboutPage,
+    SettingsPage,
     HeaderMenuComponent
   ],
   imports: [
@@ -29,14 +32,16 @@ import { NavigationProvider } from '../providers/navigation/navigation';
   entryComponents: [
     MyApp,
     HomePage,
-    AboutPage
+    AboutPage,
+    SettingsPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NavigationProvider,
-    AppVersion
+    AppVersion,
+    SettingsProvider
   ]
 })
 export class AppModule {}

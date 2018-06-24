@@ -6,7 +6,7 @@ export class SettingsProvider {
 
   constructor() {
     // get from localstorage and use that if not use default
-    this._apiUrl = 'http://xfitness.local';
+    this._apiUrl = 'http://xfitness.local/api';
   }
 
   get apiUrl() {

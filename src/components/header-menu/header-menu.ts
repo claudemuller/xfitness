@@ -13,11 +13,11 @@ export class HeaderMenuComponent {
   constructor(public app: App,
               public platform: Platform) {
     this.pages = [
-      {title: 'Home', component: HomePage},
-      {title: 'Previous Session Stats', component: HomePage},
-      {title: 'User Management', component: HomePage},
-      {title: 'Settings', component: HomePage},
-      {title: 'About', component: HomePage}
+      {title: 'Home', component: HomePage, icon: 'home'},
+      {title: 'Previous Session Stats', component: HomePage, icon: 'stats'},
+      {title: 'User Management', component: HomePage, icon: 'people'},
+      {title: 'Settings', component: HomePage, icon: 'settings'},
+      {title: 'About', component: HomePage, icon: 'information-circle'}
     ];
   }
 

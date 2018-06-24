@@ -3,11 +3,14 @@ import { IonicPage, AlertController, LoadingController, Loading } from 'ionic-an
 
 import { NavigationProvider } from '../../providers/navigation/navigation';
 import { AuthProvider } from '../../providers/auth/auth';
+// import { LocalStorageProvider } from '../../providers/local-storage/local-storage';
 
 import { ICredentialsInterface } from '../../providers/auth/credentials.interface';
 
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
+
+// import { User } from '../../app/user';
 
 @IonicPage()
 @Component({
@@ -23,6 +26,7 @@ export class LoginPage {
               private _authProvider: AuthProvider,
               private _alertController: AlertController,
               private _loadingController: LoadingController) {
+              // private _localStorageProvider: LocalStorageProvider) {
   }
 
   public createAccount(): void {
@@ -34,6 +38,9 @@ export class LoginPage {
 
     this._authProvider.login(this.loginCredentials).subscribe(response => {
       if (response.success) {
+        // this._authProvider.currentUser = new User('TODO', 'TODO', response.data.token);
+        // this._localStorageProvider.login(response.data);
+
         this._navigationProvider.setRoot(HomePage)
       } else {
         let error = '';

@@ -4,6 +4,7 @@ ion-title {
 
 ion-navbar button {
   position: absolute !important;
+  z-index: 99;
 }
 
 .logo {

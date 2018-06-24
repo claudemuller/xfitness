@@ -7,6 +7,7 @@ import { User } from '../../app/user';
 import { ICredentialsInterface } from './credentials.interface';
 
 import { SettingsProvider } from '../settings/settings';
+import { LocalStorageProvider } from '../local-storage/local-storage';
 
 import { IHttpOptionsInterface } from './http-options.interface';
 
@@ -16,7 +17,8 @@ export class AuthProvider {
   private _httpOptions: IHttpOptionsInterface;
 
   constructor(private _http: HttpClient,
-              private _settingsProvider: SettingsProvider) {
+              private _settingsProvider: SettingsProvider,
+              private _localStorageProvider: LocalStorageProvider) {
     this._httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -54,11 +56,11 @@ export class AuthProvider {
     return this._currentUser;
   }
 
-  public logout(): Observable<any> {
-    return Observable.create(observer => {
-      this._currentUser = null;
-      observer.next(true);
-      observer.complete();
-    });
+  public isLoggedIn(): Promise<boolean> {
+    return this._localStorageProvider.getToken().then(token => !token);
+  }
+
+  public logout(): Promise<string> {
+    return this._localStorageProvider.logout().then(data => data);
   }
 }

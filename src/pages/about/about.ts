@@ -15,13 +15,13 @@ export class AboutPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private appVersion: AppVersion) {
+              private _appVersion: AppVersion) {
   }
 
   public ionViewDidLoad() {
     this.appAuthor = 'Claude Müller';
     this.appUrl = 'https://xfitness.dxt.rs';
-    this.appVersion.getAppName().then(name => this.appName = name);
-    this.appVersion.getVersionNumber().then(version => this.appVer = version);
+    this._appVersion.getAppName().then(name => this.appName = name);
+    this._appVersion.getVersionNumber().then(version => this.appVer = version);
   }
 }

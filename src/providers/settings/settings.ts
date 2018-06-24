@@ -9,7 +9,7 @@ export class SettingsProvider {
     this._apiUrl = 'http://xfitness.local/api';
   }
 
-  get apiUrl() {
+  get apiUrl(): string {
     return this._apiUrl;
   }
 }

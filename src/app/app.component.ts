@@ -13,21 +13,21 @@ import { NavigationProvider } from '../providers/navigation/navigation';
 export class MyApp {
   @ViewChild(Nav) rootNav: Nav;
 
-  public rootPage: any = HomePage;
+  public rootPage: any = 'LoginPage';
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              private navigation: NavigationProvider) {
+              private _navigation: NavigationProvider) {
     this.initializeApp();
   }
 
   public ngOnInit(): void {
-    this.navigation.initRootNav(this.rootNav);
+    this._navigation.initRootNav(this.rootNav);
   }
 
 
-  public initializeApp() {
+  public initializeApp(): void {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();

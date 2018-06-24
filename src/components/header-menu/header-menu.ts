@@ -6,6 +6,7 @@ import { AboutPage } from '../../pages/about/about';
 import { SettingsPage } from '../../pages/settings/settings';
 
 import { NavigationProvider } from '../../providers/navigation/navigation';
+import { AuthProvider } from '../../providers/auth/auth';
 
 import { IPageInterface } from './page.interface';
 
@@ -18,32 +19,33 @@ export class HeaderMenuComponent {
 
   constructor(public app: App,
               public platform: Platform,
-              private navigationProvider: NavigationProvider) {
+              private _navigationProvider: NavigationProvider,
+              private _authProvider: AuthProvider) {
 
     this.pages = [
-      {title: 'Dashboard', component: HomePage, icon: 'home'},
-      {title: 'Previous Session Stats', component: HomePage, icon: 'stats'},
-      {title: 'User Management', component: HomePage, icon: 'people'},
-      {title: 'Settings', component: SettingsPage, icon: 'settings'},
-      {title: 'About', component: AboutPage, icon: 'information-circle'}
+      {title: 'Dashboard', component: 'HomePage', icon: 'home'},
+      {title: 'Previous Session Stats', component: 'HomePage', icon: 'stats'},
+      {title: 'User Management', component: 'HomePage', icon: 'people'},
+      {title: 'Settings', component: 'SettingsPage', icon: 'settings'},
+      {title: 'About', component: 'AboutPage', icon: 'information-circle'}
     ];
   }
 
-  public openPage(title: string) {
+  public openPage(title: string): void {
     const page: IPageInterface = this.pages.find(page => page.title === title);
 
-    this.navigationProvider.push(page.component)
+    this._navigationProvider.push(page.component)
   }
 
-  public logoutClicked() {
-    // do logout
+  public logoutClicked(): void {
+    this._authProvider.logout();
 
     const home: IPageInterface = this.pages.find(page => page.title === 'Dashboard');
 
-    this.navigationProvider.push(home.component)
+    this._navigationProvider.push(home.component)
   }
 
-  public exitClicked() {
+  public exitClicked(): void {
     this.platform.ready().then(() => {
       this.platform.exitApp();
     }).catch(error => {

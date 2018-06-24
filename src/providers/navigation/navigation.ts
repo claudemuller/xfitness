@@ -6,11 +6,11 @@ import { Page } from 'ionic-angular/navigation/nav-util';
 export class NavigationProvider {
   private _rootNav: NavController;
 
-  public initRootNav(rootNav: NavController) {
+  public initRootNav(rootNav: NavController): void {
     this._rootNav = rootNav;
   }
 
-  public push(page: Page) {
+  public push(page: Page): void {
     this._rootNav.push(page);
   }
 }

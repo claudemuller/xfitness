@@ -13,7 +13,7 @@ export class SettingsPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private settingsProvider: SettingsProvider) {
-    this.apiUrl = this.settingsProvider.apiUrl;
+              private _settingsProvider: SettingsProvider) {
+    this.apiUrl = this._settingsProvider.apiUrl;
   }
 }

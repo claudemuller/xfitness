@@ -15,13 +15,14 @@ import { HeaderMenuComponent } from '../components/header-menu/header-menu';
 
 import { NavigationProvider } from '../providers/navigation/navigation';
 import { SettingsProvider } from '../providers/settings/settings';
+import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    AboutPage,
-    SettingsPage,
+    // AboutPage,
+    // SettingsPage,
     HeaderMenuComponent
   ],
   imports: [
@@ -32,8 +33,8 @@ import { SettingsProvider } from '../providers/settings/settings';
   entryComponents: [
     MyApp,
     HomePage,
-    AboutPage,
-    SettingsPage,
+    // AboutPage,
+    // SettingsPage,
   ],
   providers: [
     StatusBar,
@@ -41,7 +42,8 @@ import { SettingsProvider } from '../providers/settings/settings';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NavigationProvider,
     AppVersion,
-    SettingsProvider
+    SettingsProvider,
+    AuthProvider
   ]
 })
 export class AppModule {}

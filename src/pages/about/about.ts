@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppVersion } from '@ionic-native/app-version';
 
 @IonicPage()
@@ -9,7 +9,7 @@ import { AppVersion } from '@ionic-native/app-version';
 })
 export class AboutPage {
   public appName: string;
-  public appVersion: string;
+  public appVer: string;
   public appUrl: string;
   public appAuthor: string;
 
@@ -22,6 +22,6 @@ export class AboutPage {
     this.appAuthor = 'Claude Müller';
     this.appUrl = 'https://xfitness.dxt.rs';
     this.appVersion.getAppName().then(name => this.appName = name);
-    this.appVersion.getVersionNumber().then(version => this.appVersion = version);
+    this.appVersion.getVersionNumber().then(version => this.appVer = version);
   }
 }

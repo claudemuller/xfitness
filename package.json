@@ -2,6 +2,7 @@
   "name": "xfitness",
   "version": "1.0.0",
   "author": "Claude Müller",
+  "email": "claude@dxt.rs",
   "homepage": "https://xfitness.dxt.rs",
   "private": true,
   "scripts": {

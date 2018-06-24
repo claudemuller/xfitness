@@ -39,7 +39,7 @@ export class HeaderMenuComponent {
 
     const home: IPageInterface = this.pages.find(page => page.title === 'Dashboard');
 
-    this.navigationProvider.push(home)
+    this.navigationProvider.push(home.component)
   }
 
   public exitClicked() {

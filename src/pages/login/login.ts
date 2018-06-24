@@ -31,14 +31,25 @@ export class LoginPage {
 
   public login(): void {
     this._showLoading();
-    this._authProvider.login(this.loginCredentials).subscribe(allowed => {
-      if (allowed) {
+
+    this._authProvider.login(this.loginCredentials).subscribe(response => {
+      if (response.success) {
         this._navigationProvider.setRoot(HomePage)
       } else {
-        this._showError('Access Denied');
+        let error = '';
+
+        if (typeof(response.error) === 'object') {
+          error = Object.keys(response.error).map((key) => {
+            return response.error[key];
+          }).join('\n');
+        } else {
+          error = response.error;
+        }
+
+        this._showError(error);
       }
     }, error => {
-      this._showError(error);
+      this._showError(error.message);
     });
   }
 
@@ -47,6 +58,7 @@ export class LoginPage {
       content: 'Logging in...',
       dismissOnPageChange: true
     });
+
     this._loading.present();
   }
 
@@ -54,7 +66,7 @@ export class LoginPage {
     this._loading.dismiss();
 
     const alert = this._alertController.create({
-      title: 'Fail',
+      title: 'Error',
       subTitle: text,
       buttons: ['OK']
     });

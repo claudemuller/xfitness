@@ -27,6 +27,7 @@ export class RegisterPage {
 
   public register(): void {
     this._showLoading();
+
     this._authProvider.register(this.registerCredentials).subscribe(response => {
       if (response.success) {
         this._createSuccess = true;
@@ -35,10 +36,9 @@ export class RegisterPage {
         let error = '';
 
         if (typeof(response.error) === 'object') {
-          error = Object.keys(response.error).reduce((err, pair) => {
-            const [key, value] = pair;
-            return `${err}${key}:\n${value}`;
-          });
+          error = Object.keys(response.error).map((key) => {
+            return response.error[key];
+          }).join('\n');
         } else {
           error = response.error;
         }
@@ -59,6 +59,7 @@ export class RegisterPage {
       content: 'Registering...',
       dismissOnPageChange: true
     });
+
     this._loading.present();
   }
 

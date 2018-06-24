@@ -1,6 +1,7 @@
 {
   "name": "XFitness",
-  "app_id": "",
+  "app_id": "rs.dxt.xfitness",
+  "version": "1.0.0",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

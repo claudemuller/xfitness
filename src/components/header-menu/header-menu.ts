@@ -1,24 +1,26 @@
 import { Component } from '@angular/core';
-import { App, Page, Platform } from 'ionic-angular';
+import { App, Platform } from 'ionic-angular';
 
 import { HomePage } from '../../pages/home/home';
 import { AboutPage } from '../../pages/about/about';
 
 import { NavigationProvider } from '../../providers/navigation/navigation';
 
+import { IPageInterface } from './page.interface';
+
 @Component({
   selector: 'header-menu',
   templateUrl: 'header-menu.html'
 })
 export class HeaderMenuComponent {
-  public pages: Array<{title: string, component: Page, icon: string}>;
+  public pages: Array<IPageInterface>;
 
   constructor(public app: App,
               public platform: Platform,
               private navigationProvider: NavigationProvider) {
 
     this.pages = [
-      {title: 'Home', component: HomePage, icon: 'home'},
+      {title: 'Dashboard', component: HomePage, icon: 'home'},
       {title: 'Previous Session Stats', component: HomePage, icon: 'stats'},
       {title: 'User Management', component: HomePage, icon: 'people'},
       {title: 'Settings', component: HomePage, icon: 'settings'},
@@ -26,12 +28,8 @@ export class HeaderMenuComponent {
     ];
   }
 
-  public ionViewDidLoad() {
-    this.nav = this.app.getRootNav();
-  }
-
   public openPage(title: string) {
-    const page: Page = this.pages.find(page => page.title === title);
+    const page: IPageInterface = this.pages.find(page => page.title === title);
 
     this.navigationProvider.push(page.component)
   }
@@ -39,7 +37,9 @@ export class HeaderMenuComponent {
   public logoutClicked() {
     // do logout
 
-    this.navigationProvider.push(HomePage)
+    const home: IPageInterface = this.pages.find(page => page.title === 'Dashboard');
+
+    this.navigationProvider.push(home)
   }
 
   public exitClicked() {

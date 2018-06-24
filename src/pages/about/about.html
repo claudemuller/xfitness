@@ -5,22 +5,18 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
-    <ion-card-header>
-      About {{appName}}
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          Author: Claude Müller
-        </ion-item>
-        <ion-item>
-          Version: {{appVersion}}
-        </ion-item>
-        <ion-item>
-          Version Code: {{appVersionCode}}
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+  <ion-list>
+    <ion-item>
+      <strong>App Name:</strong> {{appName}}
+    </ion-item>
+    <ion-item>
+      <strong>App URL:</strong> <a href="{{appUrl}}" title="{{appName}}">{{appUrl}}</a>
+    </ion-item>
+    <ion-item>
+      <strong>Author:</strong> {{appAuthor}}
+    </ion-item>
+    <ion-item>
+      <strong>Version:</strong> {{appVersion}}
+    </ion-item>
+  </ion-list>
 </ion-content>

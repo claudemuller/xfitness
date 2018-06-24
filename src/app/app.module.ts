@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { AppVersion } from '@ionic-native/app-version';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { AboutPage } from '../pages/about/about';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -16,6 +18,7 @@ import { NavigationProvider } from '../providers/navigation/navigation';
   declarations: [
     MyApp,
     HomePage,
+    AboutPage,
     HeaderMenuComponent
   ],
   imports: [
@@ -25,13 +28,15 @@ import { NavigationProvider } from '../providers/navigation/navigation';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    AboutPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    NavigationProvider
+    NavigationProvider,
+    AppVersion
   ]
 })
 export class AppModule {}

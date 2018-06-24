@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AppVersion } from '@ionic-native/app-version';
 
 @IonicPage()
 @Component({
@@ -9,16 +10,18 @@ import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
 export class AboutPage {
   public appName: string;
   public appVersion: string;
-  public appVersionCode: string;
+  public appUrl: string;
+  public appAuthor: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public app: App) {
+              private appVersion: AppVersion) {
   }
 
   public ionViewDidLoad() {
-    this.appName = this.app.getAppName();
-    this.appVersion = this.app.getVersionNumber();
-    this.appVersionCode = this.app.getVersionCode();
+    this.appAuthor = 'Claude Müller';
+    this.appUrl = 'https://xfitness.dxt.rs';
+    this.appVersion.getAppName().then(name => this.appName = name);
+    this.appVersion.getVersionNumber().then(version => this.appVersion = version);
   }
 }

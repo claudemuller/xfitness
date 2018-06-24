@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { NavController, Page } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
+import { Page } from 'ionic-angular/navigation/nav-util';
 
 @Injectable()
 export class NavigationProvider {

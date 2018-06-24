@@ -14,12 +14,12 @@
           <ion-list inset>
             <ion-item>
               <ion-label floating>Email</ion-label>
-              <ion-input type="text" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+              <ion-input type="text" name="email" [(ngModel)]="loginCredentials.email" required></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label floating>Password</ion-label>
-              <ion-input type="password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
+              <ion-input type="password" name="password" [(ngModel)]="loginCredentials.password" required></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -28,9 +28,13 @@
       <ion-row>
         <ion-col>
           <button ion-button secondary full type="submit" [disabled]="!loginForm.form.valid">Login</button>
-          <button ion-button secondary block clear (click)="createAccount()">Create New Account</button>
         </ion-col>
       </ion-row>
     </form>
+    <ion-row>
+      <ion-col>
+        <button ion-button secondary block clear class="register-button" (click)="createAccount()">Create New Account</button>
+      </ion-col>
+    </ion-row>
   </div>
 </ion-content>

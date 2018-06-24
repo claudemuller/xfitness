@@ -4,6 +4,7 @@ import { App, Platform } from 'ionic-angular';
 import { HomePage } from '../../pages/home/home';
 import { AboutPage } from '../../pages/about/about';
 import { SettingsPage } from '../../pages/settings/settings';
+import { LoginPage } from '../../pages/login/login';
 
 import { NavigationProvider } from '../../providers/navigation/navigation';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -21,13 +22,12 @@ export class HeaderMenuComponent {
               public platform: Platform,
               private _navigationProvider: NavigationProvider,
               private _authProvider: AuthProvider) {
-
     this.pages = [
-      {title: 'Dashboard', component: 'HomePage', icon: 'home'},
-      {title: 'Previous Session Stats', component: 'HomePage', icon: 'stats'},
-      {title: 'User Management', component: 'HomePage', icon: 'people'},
-      {title: 'Settings', component: 'SettingsPage', icon: 'settings'},
-      {title: 'About', component: 'AboutPage', icon: 'information-circle'}
+      {title: 'Dashboard', component: HomePage, icon: 'home'},
+      {title: 'Previous Session Stats', component: HomePage, icon: 'stats'},
+      {title: 'User Management', component: HomePage, icon: 'people'},
+      {title: 'Settings', component: SettingsPage, icon: 'settings'},
+      {title: 'About', component: AboutPage, icon: 'information-circle'}
     ];
   }
 
@@ -38,11 +38,11 @@ export class HeaderMenuComponent {
   }
 
   public logoutClicked(): void {
-    this._authProvider.logout();
-
     const home: IPageInterface = this.pages.find(page => page.title === 'Dashboard');
 
-    this._navigationProvider.push(home.component)
+    this._authProvider.logout().subscribe(succ => {
+      this._navigationProvider.setRoot(LoginPage);
+    });
   }
 
   public exitClicked(): void {

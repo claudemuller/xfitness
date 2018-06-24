@@ -4,6 +4,43 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding text-center>
+  <div class="register">
+    <img src="assets/imgs/logo.svg" class="logo" width="100">
 
+    <form (ngSubmit)="register()" #registerForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            <ion-item>
+              <ion-label floating>Name</ion-label>
+              <ion-input type="text" name="name" [(ngModel)]="registerCredentials.name" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label floating>Email</ion-label>
+              <ion-input type="text" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label floating>Password</ion-label>
+              <ion-input type="password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <button ion-button secondary full type="submit" [disabled]="!registerForm.form.valid">Register</button>
+        </ion-col>
+      </ion-row>
+    </form>
+    <ion-row>
+      <ion-col>
+        <button ion-button secondary block clear class="login-button" (click)="goToLogin()">Go to Login</button>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>
+

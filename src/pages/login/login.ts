@@ -7,6 +7,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { ICredentialsInterface } from '../../providers/auth/credentials.interface';
 
 import { HomePage } from '../home/home';
+import { RegisterPage } from '../register/register';
 
 @IonicPage()
 @Component({
@@ -14,25 +15,25 @@ import { HomePage } from '../home/home';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  public registerCredentials: ICredentialsInterface = {email: '', password: ''};
+  public loginCredentials: ICredentialsInterface = {email: '', password: ''};
 
   private _loading: Loading;
 
   constructor(private _navigationProvider: NavigationProvider,
-              private _auth: AuthProvider,
-              private _alertCtrl: AlertController,
-              private _loadingCtrl: LoadingController) {
+              private _authProvider: AuthProvider,
+              private _alertController: AlertController,
+              private _loadingController: LoadingController) {
   }
 
   public createAccount(): void {
-    this._navigationProvider.push('RegisterPage');
+    this._navigationProvider.push(RegisterPage);
   }
 
   public login(): void {
     this._showLoading();
-    this._auth.login(this.registerCredentials).subscribe(allowed => {
+    this._authProvider.login(this.loginCredentials).subscribe(allowed => {
       if (allowed) {
-        this._navigationProvider.push(HomePage);
+        this._navigationProvider.setRoot(HomePage)
       } else {
         this._showError('Access Denied');
       }
@@ -42,8 +43,8 @@ export class LoginPage {
   }
 
   private _showLoading(): void {
-    this._loading = this._loadingCtrl.create({
-      content: 'Please wait...',
+    this._loading = this._loadingController.create({
+      content: 'Logging in...',
       dismissOnPageChange: true
     });
     this._loading.present();
@@ -52,11 +53,12 @@ export class LoginPage {
   private _showError(text: string): void {
     this._loading.dismiss();
 
-    const alert = this._alertCtrl.create({
+    const alert = this._alertController.create({
       title: 'Fail',
       subTitle: text,
       buttons: ['OK']
     });
-    alert.present(prompt);
+
+    alert.present();
   }
 }

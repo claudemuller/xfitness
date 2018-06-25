@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, AlertController } from 'ionic-angular';
+import { Page } from 'ionic-angular/navigation/nav-util';
 
 import { NavigationProvider } from '../../providers/navigation/navigation';
 import { WorkoutsProvider } from '../../providers/workouts/workouts';
 import { LocalStorageProvider } from '../../providers/local-storage/local-storage';
+import { AlertProvider } from '../../providers/alert/alert';
 
 import { HomePage } from '../home/home';
 
@@ -21,7 +23,8 @@ export class StartWorkoutPage {
   constructor(private _navigationProvider: NavigationProvider,
               private _workoutsProvider: WorkoutsProvider,
               private _localStorageProvider: LocalStorageProvider,
-              private _alertController: AlertController) {
+              private _alertController: AlertController,
+              private _alertProvider: AlertProvider) {
   }
 
   public ionViewDidLoad(): void {
@@ -38,8 +41,7 @@ export class StartWorkoutPage {
     clearTimeout(this._timer);
 
     this._localStorageProvider.endWorkout().then(startTime => {
-      const endTime = Date.now(),
-        workDuration = endTime - startTime;
+      const endTime = Date.now();
 
       const confirm = this._alertController.create({
         title: 'Save the workout?',
@@ -53,8 +55,12 @@ export class StartWorkoutPage {
           {
             text: 'Yes please',
             handler: () => {
+              this._alertProvider.showLoading('Saving workout...');
+
               this._workoutsProvider.saveWorkout(this.attendingMembers, startTime, endTime).subscribe(response => {
-                this._clearWorkoutData(SummaryPage);
+                this._alertProvider.dismissLoading();
+
+                this._showPopup('Success', response.message);
               });
             }
           }
@@ -77,5 +83,20 @@ export class StartWorkoutPage {
 
       this._startTimer();
     }, 1000);
+  }
+
+  private _showPopup(title: string, text: string, page: Page): void {
+    const alert = this._alertController.create({
+      title,
+      subTitle: text,
+      buttons: [{
+        text: 'OK',
+        handler: data => {
+          this._clearWorkoutData(HomePage); //WorkoutsPage);
+        }
+      }]
+    });
+
+    alert.present();
   }
 }

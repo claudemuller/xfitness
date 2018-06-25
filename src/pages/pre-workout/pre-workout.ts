@@ -10,6 +10,8 @@ import { LocalStorageProvider } from '../../providers/local-storage/local-storag
 import { LoginPage } from '../login/login';
 import { StartWorkoutPage } from '../start-workout/start-workout';
 
+import { IMemberInterface } from '../member-management/member.interface';
+
 @IonicPage()
 @Component({
   selector: 'page-pre-workout',
@@ -58,7 +60,7 @@ export class PreWorkoutPage {
   }
 
   public chooseMemberClicked(members: any): void {
-    this.attendingMembers = this.members.filter((member) => {
+    this.attendingMembers = this.members.filter((member: IMemberInterface) => {
       return members.indexOf((member.id).toString()) > -1;
     });
   }

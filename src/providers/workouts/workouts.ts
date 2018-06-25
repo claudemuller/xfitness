@@ -4,12 +4,14 @@ import { Observable } from 'rxjs/Observable';
 
 import { LocalStorageProvider } from '../local-storage/local-storage';
 import { AuthProvider } from '../auth/auth';
+import { SettingsProvider } from '../settings/settings';
 
 @Injectable()
 export class WorkoutsProvider {
   constructor(private _http: HttpClient,
               private _authProvider: AuthProvider,
-              private _localStorageProvider: LocalStorageProvider) {
+              private _localStorageProvider: LocalStorageProvider,
+              private _settingsProvider: SettingsProvider) {
     this._httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded',

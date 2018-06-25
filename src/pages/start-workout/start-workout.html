@@ -4,8 +4,20 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding text-center>
+  <h3>Workout Duration</h3>
+  <ion-row>
+    <ion-col>
+      <h1 class="workout-timer">{{workoutDuration}}</h1>
+    </ion-col>
+  </ion-row>
 
+  <h4>Attending Members</h4>
+  <ion-list *ngIf="attendingMembers.length">
+    <button ion-item *ngFor="let member of attendingMembers">
+      {{member.name}}
+    </button>
+  </ion-list>
 </ion-content>
 
 <ion-footer>

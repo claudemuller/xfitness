@@ -5,6 +5,7 @@ import { NavigationProvider } from '../../providers/navigation/navigation';
 import { MembersProvider } from '../../providers/members/members';
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
+import { LocalStorageProvider } from '../../providers/local-storage/local-storage';
 
 import { LoginPage } from '../login/login';
 import { StartWorkoutPage } from '../start-workout/start-workout';
@@ -22,7 +23,8 @@ export class PreWorkoutPage {
   constructor(private _navigationProvider: NavigationProvider,
               private _membersProvider: MembersProvider,
               private _alertProvider: AlertProvider,
-              private _authProvider: AuthProvider) {
+              private _authProvider: AuthProvider,
+              private _localStorageProvider: LocalStorageProvider) {
     this.selectOptions = {
       title: 'Members',
       subTitle: 'Select attending members'
@@ -35,10 +37,16 @@ export class PreWorkoutPage {
     this._membersProvider.getMembers().subscribe(response => {
       console.log(response);
 
-      if (response.success) {
-        this.members = response.data;
+      if (response) {
+        if (response.success) {
+          this.members = response.data;
 
-        this._alertProvider.dismissLoading();
+          this._alertProvider.dismissLoading();
+        }
+      } else {
+        this._alertProvider.showError('Error loading members :(');
+
+        this._navigationProvider.pop();
       }
     }, error => {
       if (error) {
@@ -56,8 +64,10 @@ export class PreWorkoutPage {
   }
 
   public startWorkoutTimerClicked(): void {
-    this._navigationProvider.push(StartWorkoutPage, {
-      members: this.attendingMembers
+    this._localStorageProvider.saveAttendingMembers(this.attendingMembers).then(success => {
+      if (success) {
+        this._navigationProvider.push(StartWorkoutPage);
+      }
     });
   }
 }

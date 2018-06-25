@@ -23,4 +23,22 @@ export class LocalStorageProvider {
   public startWorkout(): Promise<any> {
     return this._storage.set('workout_start', Date.now());
   }
+
+  public endWorkout(): Promise<any> {
+    return this._storage.get('workout_start');
+  }
+
+  public clearWorkoutData(): Promise<any> {
+    return this._storage.remove('attendees').then(success => {
+      return this._storage.remove('workout_start');
+    });
+  }
+
+  public saveAttendingMembers(data: any): Promise<any> {
+    return this._storage.set('attendees', data);
+  }
+
+  public getAttendingMembers(): Promise<any> {
+    return this._storage.get('attendees');
+  }
 }

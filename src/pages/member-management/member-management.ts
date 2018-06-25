@@ -32,6 +32,8 @@ export class MemberManagementPage {
     this._alertProvider.showLoading('Loading members...', false);
 
     this._membersProvider.getMembers().subscribe(response => {
+      console.log(response);
+
       if (response) {
         if (response.success) {
           this.members = response.data;

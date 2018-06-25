@@ -24,7 +24,6 @@ export class HeaderMenuComponent {
               private _navigationProvider: NavigationProvider,
               private _authProvider: AuthProvider) {
     this.pages = [
-      {title: 'Previous Session Stats', component: HomePage, icon: 'stats'},
       {title: 'Member Management', component: MemberManagementPage, icon: 'people'},
       {title: 'Settings', component: SettingsPage, icon: 'settings'},
       {title: 'About', component: AboutPage, icon: 'information-circle'}

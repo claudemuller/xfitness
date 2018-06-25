@@ -33,8 +33,8 @@ export class WorkoutsPage {
           this.workouts = response.data;
 
           for (var i = 0; i < this.workouts.length; i++) {
-            const end_time = new Date(this.workouts[i].session_end),
-              start_time = new Date(this.workouts[i].session_start);
+            const end_time: number = new Date(this.workouts[i].session_end).getTime(),
+              start_time: number = new Date(this.workouts[i].session_start).getTime();
             this.workouts[i].duration = end_time - start_time;
             this.workouts[i].session_end = this.workouts[i].session_end.slice(this.workouts[i].session_end.indexOf(' '));
           }
@@ -53,13 +53,5 @@ export class WorkoutsPage {
         this._navigationProvider.setRoot(LoginPage);
       }
     });
-  }
-
-  public toggleSection(i: number): void {
-    this.information[i].open = !this.information[i].open;
-  }
-
-  public toggleItem(i: number, j: number): void {
-    this.information[i].children[j].open = !this.information[i].children[j].open;
   }
 }

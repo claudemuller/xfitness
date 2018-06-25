@@ -35,16 +35,21 @@ export class MemberManagementPage {
 
   public addMemberClicked(): void {
     this.members.unshift({name: this.newMember});
+    this.newMember = '';
   }
 
   public removeMemberClicked(memberId: integer): void {
-    this.members = this.members.filter(mem => mem.id !== memberId);
+    for (let i = 0; i < this.members.length; i++) {
+      if (this.members[i].id === memberId) {
+        this.members[i]['remove'] = true;
+      }
+    }
   }
 
-  public saveMembersClicked(): void {
+  public updateMembersClicked(): void {
     this._showLoading('Saving members...');
 
-    this._membersProvider.saveMembers(this.members).subscribe(response => {
+    this._membersProvider.updateMembers(this.members).subscribe(response => {
       if (response.success) {
         this._loading.dismiss();
         this._showPopup('Success', response.message);
@@ -52,11 +57,14 @@ export class MemberManagementPage {
     });
   }
 
+  public activeMembers(): Array {
+    return this.members.filter(member => !member.hasOwnProperty('remove'));
+  }
+
   private _showLoading(message: string): void {
     this._loading = this._loadingController.create({
       content: message
     });
-
 
     this._loading.present();
   }

@@ -24,7 +24,7 @@
 
   <h4>Members</h4>
   <ion-list *ngIf="members.length">
-    <button ion-item *ngFor="let member of members" (click)="removeMemberClicked(member.id)">
+    <button ion-item *ngFor="let member of activeMembers()" (click)="removeMemberClicked(member.id)">
       {{member.name}}
       <ion-icon class="pull-right" name="close"></ion-icon>
     </button>
@@ -33,6 +33,6 @@
 
 <ion-footer>
   <ion-toolbar>
-    <button ion-button block (click)="saveMembersClicked()">Save Members</button>
+    <button ion-button block (click)="updateMembersClicked()">Update Members</button>
   </ion-toolbar>
 </ion-footer>

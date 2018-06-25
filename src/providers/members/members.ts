@@ -28,7 +28,7 @@ export class MembersProvider {
     return this._http.get(`${this._settingsProvider.apiUrl}/members?token=${token}`, this._httpOptions);
   }
 
-  public saveMembers(members): Observable<any> {
+  public updateMembers(members): Observable<any> {
     const token: string = this._authProvider.currentUser.token,
       body = new HttpParams()
         .set('token', token)

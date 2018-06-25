@@ -33,6 +33,8 @@ export class PreWorkoutPage {
     this._alertProvider.showLoading('Loading members...', false);
 
     this._membersProvider.getMembers().subscribe(response => {
+      console.log(response);
+
       if (response.success) {
         this.members = response.data;
 
@@ -54,6 +56,8 @@ export class PreWorkoutPage {
   }
 
   public startWorkoutTimerClicked(): void {
-    this._navigationProvider.push(StartWorkoutPage);
+    this._navigationProvider.push(StartWorkoutPage, {
+      members: this.attendingMembers
+    });
   }
 }

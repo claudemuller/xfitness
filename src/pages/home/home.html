@@ -8,27 +8,31 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Workouts Summary</h3>
+<ion-content padding text-center>
+  <img src="assets/imgs/logo.svg" class="logo" width="150">
 
-  <ion-list>
-    <ion-item>
-      <strong>Average attendance:</strong> TODO
-    </ion-item>
-    <ion-item>
-      <strong>Average session duration:</strong> TODO
-    </ion-item>
-  </ion-list>
+  <ion-row class="intro">
+    <ion-col>
+      <h3>Welcome to XFitness</h3>
+      <p>XFitness is an Ionic app that tracks workouts for any Crossfit gym</p>
+    </ion-col>
+  </ion-row>
 
   <ion-row>
     <ion-col>
-      <button ion-button full (click)="addMembersClicked()">Add members</button>
+      <h3>Quick actions</h3>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <button ion-button block (click)="addMembersClicked()">Add members</button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <button ion-button block (click)="startWorkoutClicked()">Start Workout</button>
     </ion-col>
   </ion-row>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-     <button ion-button block (click)="startWorkoutClicked()">Start Workout</button>
-  </ion-toolbar>
-</ion-footer>

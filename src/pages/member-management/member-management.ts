@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, AlertController } from 'ionic-angular';
+import { Page } from 'ionic-angular/navigation/nav-util';
 
 import { MembersProvider } from '../../providers/members/members';
 import { NavigationProvider } from '../../providers/navigation/navigation';
@@ -23,17 +24,24 @@ export class MemberManagementPage {
   constructor(private _membersProvider: MembersProvider,
               private _navigationProvider: NavigationProvider,
               private _authProvider: AuthProvider,
-              private _alertProvider: AlertProvider) {
+              private _alertProvider: AlertProvider,
+              private _alertController: AlertController) {
   }
 
   public ionViewDidLoad(): void {
     this._alertProvider.showLoading('Loading members...', false);
 
     this._membersProvider.getMembers().subscribe(response => {
-      if (response.success) {
-        this.members = response.data;
+      if (response) {
+        if (response.success) {
+          this.members = response.data;
 
-        this._alertProvider.dismissLoading();
+          this._alertProvider.dismissLoading();
+        }
+      } else {
+        this._alertProvider.showError('Error loading members :(');
+
+        this._navigationProvider.pop();
       }
     }, error => {
       if (error) {
@@ -64,7 +72,7 @@ export class MemberManagementPage {
 
     this._membersProvider.updateMembers(this.members).subscribe(response => {
       if (response.success) {
-        this._alertProvider.showPopup('Success', response.message, HomePage);
+        this._showPopup('Success', response.message, HomePage);
       }
     }, error => {
       if (error) {
@@ -77,5 +85,22 @@ export class MemberManagementPage {
 
   public activeMembers(): Array<Object> {
     return this.members.filter(member => !member.hasOwnProperty('remove'));
+  }
+
+  private _showPopup(title: string, text: string, page: Page): void {
+    this._alertProvider.dismissLoading();
+
+    const alert = this._alertController.create({
+      title,
+      subTitle: text,
+      buttons: [{
+        text: 'OK',
+        handler: data => {
+          this._navigationProvider.setRoot(page);
+        }
+      }]
+    });
+
+    alert.present();
   }
 }

@@ -22,6 +22,10 @@ export class NavigationProvider {
     this._rootNav.popTo(page);
   }
 
+  public pop(): void {
+    this._rootNav.pop();
+  }
+
   public setRoot(page: Page): void {
     this._rootNav.setRoot(page);
   }

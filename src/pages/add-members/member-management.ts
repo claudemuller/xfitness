@@ -51,7 +51,6 @@ export class MemberManagementPage {
 
     this._membersProvider.updateMembers(this.members).subscribe(response => {
       if (response.success) {
-        this._loading.dismiss();
         this._showPopup('Success', response.message);
       }
     });

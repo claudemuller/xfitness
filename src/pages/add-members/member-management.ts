@@ -9,10 +9,7 @@ import { MembersProvider } from '../../providers/members/members';
   templateUrl: 'member-management.html',
 })
 export class MemberManagementPage {
-  public members: Array<string> = [
-    'John Doe',
-    'Piet Snot'
-  ];
+  public members: Array<string> = [];
   public newMember: string;
 
   private _loading: Loading;
@@ -25,9 +22,9 @@ export class MemberManagementPage {
     this._showLoading();
 
     this._membersProvider.getMembers().subscribe(members => {
-      this._loading.dismiss();
+      this.members = members.data;
 
-      this.members = members;
+      this._loading.dismiss();
     });
   }
 
@@ -35,20 +32,19 @@ export class MemberManagementPage {
     this.members.unshift(this.newMember);
   }
 
-  public removeMemberClicked(member: string): void {
-    this.members = this.members.filter(mem => mem !== member);
+  public removeMemberClicked(memberId: integer): void {
+    this.members = this.members.filter(mem => mem.id !== memberId);
   }
 
   public saveMembersClicked(): void {
-    this._membersProvider.saveMembers().subscribe(members => {
+    this._membersProvider.saveMembers(this.members).subscribe(members => {
       this.members = members;
     });
   }
 
   private _showLoading(): void {
     this._loading = this._loadingController.create({
-      content: 'Fetching members...',
-      dismissOnPageChange: true
+      content: 'Fetching members...'
     });
 
     this._loading.present();

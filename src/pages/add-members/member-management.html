@@ -23,9 +23,9 @@
   </ion-row>
 
   <h4>Members</h4>
-  <ion-list>
-    <button ion-item *ngFor="let member of members" (click)="removeMemberClicked(member)">
-      {{member}}
+  <ion-list *ngIf="members.length">
+    <button ion-item *ngFor="let member of members" (click)="removeMemberClicked(member.id)">
+      {{member.name}}
       <ion-icon class="pull-right" name="close"></ion-icon>
     </button>
   </ion-list>

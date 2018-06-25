@@ -23,14 +23,16 @@ export class MembersProvider {
   }
 
   public getMembers(): any {
-    const token: string = this._authProvider.currentUser._token;
+    const token: string = this._authProvider.currentUser.token;
 
-    return this._http.get(this._settingsProvider.apiUrl + '/members', token, this._httpOptions);
+    return this._http.get(`${this._settingsProvider.apiUrl}/members?token=${token}`, this._httpOptions);
   }
 
   public saveMembers(members): Observable<any> {
-    const body = new HttpParams()
-      .set('members', members);
+    const token: string = this._authProvider.currentUser.token,
+      body = new HttpParams()
+        .set('token', token)
+        .set('members', members);
 
     return this._http.post(this._settingsProvider.apiUrl + '/members', body.toString(), this._httpOptions);
   }

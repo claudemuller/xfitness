@@ -8,15 +8,15 @@ export class LocalStorageProvider {
   constructor(public _storage: Storage) {
   }
 
-  public login(data: ILoginDataInterface): void {
-    this._storage.set('token', data.token);
+  public login(data: ILoginDataInterface): Promise<any> {
+    return this._storage.set('user', data);
   }
 
-  public getToken(): Promise<string> {
-    return this._storage.get('token');
+  public getUser(): Promise<any> {
+    return this._storage.get('user');
   }
 
-  public logout(): Promise {
-    this._storage.remove('token');
+  public logout(): Promise<any> {
+    return this._storage.remove('user');
   }
 }

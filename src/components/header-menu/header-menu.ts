@@ -23,12 +23,15 @@ export class HeaderMenuComponent {
               private _navigationProvider: NavigationProvider,
               private _authProvider: AuthProvider) {
     this.pages = [
-      {title: 'Dashboard', component: HomePage, icon: 'home'},
       {title: 'Previous Session Stats', component: HomePage, icon: 'stats'},
       {title: 'User Management', component: HomePage, icon: 'people'},
       {title: 'Settings', component: SettingsPage, icon: 'settings'},
       {title: 'About', component: AboutPage, icon: 'information-circle'}
     ];
+  }
+
+  public homeClicked(): void {
+    this._navigationProvider.setRoot(HomePage);
   }
 
   public openPage(title: string): void {
@@ -38,9 +41,7 @@ export class HeaderMenuComponent {
   }
 
   public logoutClicked(): void {
-    const home: IPageInterface = this.pages.find(page => page.title === 'Dashboard');
-
-    this._authProvider.logout().subscribe(succ => {
+    this._authProvider.logout().then(success => {
       this._navigationProvider.setRoot(LoginPage);
     });
   }

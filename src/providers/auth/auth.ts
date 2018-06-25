@@ -56,11 +56,11 @@ export class AuthProvider {
     return this._currentUser;
   }
 
-  public isLoggedIn(): Promise<boolean> {
-    return this._localStorageProvider.getToken().then(token => !token);
+  public isLoggedIn(): Promise<any> {
+    return this._localStorageProvider.getUser();
   }
 
-  public logout(): Promise<string> {
-    return this._localStorageProvider.logout().then(data => data);
+  public logout(): Promise<any> {
+    return this._localStorageProvider.logout();
   }
 }

@@ -6,6 +6,7 @@ export class User {
   constructor(name: string, email: string, token: string) {
     this._name = name;
     this._email = email;
+    this._token = token;
   }
 
   set name(value: string) {

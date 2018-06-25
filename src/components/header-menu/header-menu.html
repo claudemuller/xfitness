@@ -1,5 +1,9 @@
 <div>
   <ion-list>
+    <button menuClose ion-item (click)="homeClicked()">
+      <ion-icon name="home"></ion-icon>
+      Dashboard
+    </button>
     <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p.title)">
       <ion-icon name="{{p.icon}}"></ion-icon>
       {{p.title}}

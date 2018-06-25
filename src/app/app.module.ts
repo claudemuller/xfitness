@@ -22,6 +22,7 @@ import { NavigationProvider } from '../providers/navigation/navigation';
 import { SettingsProvider } from '../providers/settings/settings';
 import { AuthProvider } from '../providers/auth/auth';
 import { LocalStorageProvider } from '../providers/local-storage/local-storage';
+import { MembersProvider } from '../providers/members/members';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { LocalStorageProvider } from '../providers/local-storage/local-storage';
     AppVersion,
     SettingsProvider,
     AuthProvider,
-    LocalStorageProvider
+    LocalStorageProvider,
+    MembersProvider
   ]
 })
 export class AppModule {}

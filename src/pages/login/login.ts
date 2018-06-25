@@ -46,8 +46,11 @@ export class LoginPage {
 
     this._authProvider.login(this.loginCredentials).subscribe(response => {
       if (response.success) {
-        this._authProvider.currentUser = new User(response.data.name, response.data.email, response.data.token);
-        this._localStorageProvider.login(this._authProvider.currentUser).then(success => {
+        const user: User = new User(response.data.name, response.data.email, response.data.token);
+
+        this._authProvider.currentUser = user;
+
+        this._localStorageProvider.login(user).then(success => {
           this._navigationProvider.setRoot(HomePage)
         });
       } else {

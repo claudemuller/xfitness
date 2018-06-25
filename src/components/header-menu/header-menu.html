@@ -4,9 +4,9 @@
       <ion-icon name="home"></ion-icon>
       Dashboard
     </button>
-    <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p.title)">
-      <ion-icon name="{{p.icon}}"></ion-icon>
-      {{p.title}}
+    <button menuClose ion-item *ngFor="let page of pages" (click)="openPage(page.title)">
+      <ion-icon name="{{page.icon}}"></ion-icon>
+      {{page.title}}
     </button>
     <button menuClose ion-item (click)="logoutClicked()">
       <ion-icon name="unlock"></ion-icon>

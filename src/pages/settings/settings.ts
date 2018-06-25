@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 
 import { SettingsProvider } from '../../providers/settings/settings';
 
@@ -10,10 +10,14 @@ import { SettingsProvider } from '../../providers/settings/settings';
 })
 export class SettingsPage {
   public apiUrl: string;
+  public name: string;
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private _settingsProvider: SettingsProvider) {
+  constructor(private _settingsProvider: SettingsProvider) {
     this.apiUrl = this._settingsProvider.apiUrl;
+    this.name = this._settingsProvider.name;
+  }
+
+  public saveSettingsClicked(): void {
+
   }
 }

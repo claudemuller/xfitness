@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
+
+import { NavigationProvider } from '../../providers/navigation/navigation';
+import { WorkoutsProvider } from '../../providers/workouts/workouts';
 
 @IonicPage()
 @Component({
@@ -7,10 +10,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'start-workout.html',
 })
 export class StartWorkoutPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private _navigationProvider: NavigationProvider,
+              private _workoutsProvider: WorkoutsProvider) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad StartWorkoutPage');
+  public ionViewDidLoad(): void {
+    this._workoutsProvider.startWorkout();
   }
 }

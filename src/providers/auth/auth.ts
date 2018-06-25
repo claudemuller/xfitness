@@ -8,6 +8,7 @@ import { ICredentialsInterface } from './credentials.interface';
 
 import { SettingsProvider } from '../settings/settings';
 import { LocalStorageProvider } from '../local-storage/local-storage';
+import { AlertProvider } from '../alert/alert';
 
 import { IHttpOptionsInterface } from './http-options.interface';
 
@@ -18,7 +19,8 @@ export class AuthProvider {
 
   constructor(private _http: HttpClient,
               private _settingsProvider: SettingsProvider,
-              private _localStorageProvider: LocalStorageProvider) {
+              private _localStorageProvider: LocalStorageProvider,
+              private _alertProvider: AlertProvider) {
     this._httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -49,6 +51,14 @@ export class AuthProvider {
         .set('password', credentials.password);
 
       return this._http.post(this._settingsProvider.apiUrl + '/register', body.toString(), this._httpOptions);
+    }
+  }
+
+  public checkTokenExpired(response: any): void {
+    if (!response.error.success && response.error.message === 'Token has expired') {
+      this._alertProvider.showError('Your token has expired. Please log in again');
+
+      this._localStorageProvider.logout();
     }
   }
 

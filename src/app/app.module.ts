@@ -10,7 +10,8 @@ import { RegisterPage } from '../pages/register/register';
 import { HomePage } from '../pages/home/home';
 import { AboutPage } from '../pages/about/about';
 import { SettingsPage } from '../pages/settings/settings';
-import { MemberManagementPage } from '../pages/add-members/member-management';
+import { MemberManagementPage } from '../pages/member-management/member-management';
+import { PreWorkoutPage } from '../pages/pre-workout/pre-workout';
 import { StartWorkoutPage } from '../pages/start-workout/start-workout';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -23,6 +24,8 @@ import { SettingsProvider } from '../providers/settings/settings';
 import { AuthProvider } from '../providers/auth/auth';
 import { LocalStorageProvider } from '../providers/local-storage/local-storage';
 import { MembersProvider } from '../providers/members/members';
+import { WorkoutsProvider } from '../providers/workouts/workouts';
+import { AlertProvider } from '../providers/alert/alert';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,7 @@ import { MembersProvider } from '../providers/members/members';
     AboutPage,
     SettingsPage,
     MemberManagementPage,
+    PreWorkoutPage,
     StartWorkoutPage,
     HeaderMenuComponent
   ],
@@ -49,6 +53,7 @@ import { MembersProvider } from '../providers/members/members';
     AboutPage,
     SettingsPage,
     MemberManagementPage,
+    PreWorkoutPage,
     StartWorkoutPage
   ],
   providers: [
@@ -60,7 +65,9 @@ import { MembersProvider } from '../providers/members/members';
     SettingsProvider,
     AuthProvider,
     LocalStorageProvider,
-    MembersProvider
+    MembersProvider,
+    WorkoutsProvider,
+    AlertProvider
   ]
 })
 export class AppModule {}

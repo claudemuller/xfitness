@@ -5,7 +5,7 @@ import { HomePage } from '../../pages/home/home';
 import { AboutPage } from '../../pages/about/about';
 import { SettingsPage } from '../../pages/settings/settings';
 import { LoginPage } from '../../pages/login/login';
-import { MemberManagementPage } from '../../pages/add-members/member-management';
+import { MemberManagementPage } from '../../pages/member-management/member-management';
 
 import { NavigationProvider } from '../../providers/navigation/navigation';
 import { AuthProvider } from '../../providers/auth/auth';

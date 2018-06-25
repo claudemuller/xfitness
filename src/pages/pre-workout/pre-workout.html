@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Start Workout</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Select Attending Members</ion-label>
+        <ion-select multiple="true" cancelText="Nevermind" okText="Add" [selectOptions]="selectOptions" (ionChange)="chooseMemberClicked($event)">
+          <ion-option *ngFor="let member of members" value="{{member.id}}">{{member.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <h4>Attending Members</h4>
+  <ion-list *ngIf="attendingMembers.length">
+    <button ion-item *ngFor="let member of attendingMembers">
+      {{member.name}}
+    </button>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <button ion-button block (click)="startWorkoutTimerClicked()">Start Workout Timer</button>
+  </ion-toolbar>
+</ion-footer>

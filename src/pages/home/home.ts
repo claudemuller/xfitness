@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { MemberManagementPage } from '../add-members/member-management';
-import { StartWorkoutPage } from '../start-workout/start-workout';
+import { MemberManagementPage } from '../member-management/member-management';
+import { PreWorkoutPage } from '../pre-workout/pre-workout';
 
 import { NavigationProvider } from '../../providers/navigation/navigation';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -21,7 +21,7 @@ export class HomePage {
   }
 
   public startWorkoutClicked(): void {
-    this._navigationProvider.push(StartWorkoutPage)
+    this._navigationProvider.push(PreWorkoutPage)
   }
 
   public addMembersClicked(): void {

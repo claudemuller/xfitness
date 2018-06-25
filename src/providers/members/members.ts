@@ -11,7 +11,7 @@ import { IHttpOptionsInterface } from '../auth/http-options.interface';
 export class MembersProvider {
   private _httpOptions: IHttpOptionsInterface;
 
-  constructor(public _http: HttpClient,
+  constructor(private _http: HttpClient,
               private _authProvider: AuthProvider,
               private _settingsProvider: SettingsProvider) {
     this._httpOptions = {

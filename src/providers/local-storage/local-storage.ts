@@ -19,4 +19,8 @@ export class LocalStorageProvider {
   public logout(): Promise<any> {
     return this._storage.remove('user');
   }
+
+  public startWorkout(): Promise<any> {
+    return this._storage.set('workout_start', Date.now());
+  }
 }

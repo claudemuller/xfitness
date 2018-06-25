@@ -52,15 +52,19 @@ export class AuthProvider {
     }
   }
 
-  public getUserInfo(): User {
-    return this._currentUser;
-  }
-
   public isLoggedIn(): Promise<any> {
     return this._localStorageProvider.getUser();
   }
 
   public logout(): Promise<any> {
     return this._localStorageProvider.logout();
+  }
+
+  get currentUser(): User {
+    return this._currentUser;
+  }
+
+  set currentUser(value: User) {
+    this._currentUser = value;
   }
 }

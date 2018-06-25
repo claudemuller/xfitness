@@ -30,8 +30,8 @@ export class LoginPage {
   }
 
   public ionViewDidLoad(): void {
-    this._authProvider.isLoggedIn().then(success => {
-      if (success) {
+    this._authProvider.isLoggedIn().then(user => {
+      if (user) {
         this._navigationProvider.setRoot(HomePage);
       }
     });

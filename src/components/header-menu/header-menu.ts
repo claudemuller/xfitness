@@ -5,6 +5,7 @@ import { HomePage } from '../../pages/home/home';
 import { AboutPage } from '../../pages/about/about';
 import { SettingsPage } from '../../pages/settings/settings';
 import { LoginPage } from '../../pages/login/login';
+import { MemberManagementPage } from '../../pages/add-members/member-management';
 
 import { NavigationProvider } from '../../providers/navigation/navigation';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -24,7 +25,7 @@ export class HeaderMenuComponent {
               private _authProvider: AuthProvider) {
     this.pages = [
       {title: 'Previous Session Stats', component: HomePage, icon: 'stats'},
-      {title: 'User Management', component: HomePage, icon: 'people'},
+      {title: 'Member Management', component: MemberManagementPage, icon: 'people'},
       {title: 'Settings', component: SettingsPage, icon: 'settings'},
       {title: 'About', component: AboutPage, icon: 'information-circle'}
     ];

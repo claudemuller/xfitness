@@ -10,6 +10,8 @@ import { RegisterPage } from '../pages/register/register';
 import { HomePage } from '../pages/home/home';
 import { AboutPage } from '../pages/about/about';
 import { SettingsPage } from '../pages/settings/settings';
+import { MemberManagementPage } from '../pages/add-members/member-management';
+import { StartWorkoutPage } from '../pages/start-workout/start-workout';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,6 +30,8 @@ import { LocalStorageProvider } from '../providers/local-storage/local-storage';
     HomePage,
     AboutPage,
     SettingsPage,
+    MemberManagementPage,
+    StartWorkoutPage,
     HeaderMenuComponent
   ],
   imports: [
@@ -42,7 +46,9 @@ import { LocalStorageProvider } from '../providers/local-storage/local-storage';
     RegisterPage,
     HomePage,
     AboutPage,
-    SettingsPage
+    SettingsPage,
+    MemberManagementPage,
+    StartWorkoutPage
   ],
   providers: [
     StatusBar,

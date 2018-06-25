@@ -6,8 +6,12 @@ import { LocalStorageProvider } from '../local-storage/local-storage';
 import { AuthProvider } from '../auth/auth';
 import { SettingsProvider } from '../settings/settings';
 
+import { IHttpOptionsInterface } from '../auth/http-options.interface';
+
 @Injectable()
 export class WorkoutsProvider {
+  private _httpOptions: IHttpOptionsInterface;
+
   constructor(private _http: HttpClient,
               private _authProvider: AuthProvider,
               private _localStorageProvider: LocalStorageProvider,
@@ -29,8 +33,8 @@ export class WorkoutsProvider {
       body = new HttpParams()
         .set('token', token)
         .set('members', JSON.stringify(members))
-        .set('session_start', workoutStart)
-        .set('session_end', workoutEnd);
+        .set('session_start', workoutStart.toString())
+        .set('session_end', workoutEnd.toString());
 
     return this._http.post(this._settingsProvider.apiUrl + '/workout', body.toString(), this._httpOptions);
   }

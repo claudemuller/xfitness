@@ -24,6 +24,10 @@ export class LocalStorageProvider {
     return this._storage.set('workout_start', Date.now());
   }
 
+  public getWorkoutStart(): Promise<any> {
+    return this._storage.get('workout_start');
+  }
+
   public endWorkout(): Promise<any> {
     return this._storage.get('workout_start');
   }

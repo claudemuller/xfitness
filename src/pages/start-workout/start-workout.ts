@@ -12,7 +12,7 @@ import { HomePage } from '../home/home';
 @IonicPage()
 @Component({
   selector: 'page-start-workout',
-  templateUrl: 'start-workout.html',
+  templateUrl: 'start-workout.html'
 })
 export class StartWorkoutPage {
   public attendingMembers: Array<Object> = [];
@@ -35,6 +35,10 @@ export class StartWorkoutPage {
 
       this._startTimer();
     });
+  }
+
+  public ionViewWillUnload(): void {
+    clearTimeout(this._timer);
   }
 
   public stopWorkoutTimerClicked(): void {
@@ -78,14 +82,20 @@ export class StartWorkoutPage {
   }
 
   private _startTimer(): void {
-    this._timer = setTimeout(i => {
-      this.workoutDuration += 1;
+    this._localStorageProvider.getWorkoutStart().then(workoutStart => {
+      if (workoutStart) {
+        this.workoutDuration = Date.now() - workoutStart;
+      }
 
-      this._startTimer();
-    }, 1000);
+      this._timer = setTimeout(i => {
+        this.workoutDuration += 1;
+
+        this._startTimer();
+      }, 1000);
+    });
   }
 
-  private _showPopup(title: string, text: string, page: Page): void {
+  private _showPopup(title: string, text: string, page?: Page): void {
     const alert = this._alertController.create({
       title,
       subTitle: text,

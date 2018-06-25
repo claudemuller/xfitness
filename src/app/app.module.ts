@@ -27,6 +27,8 @@ import { MembersProvider } from '../providers/members/members';
 import { WorkoutsProvider } from '../providers/workouts/workouts';
 import { AlertProvider } from '../providers/alert/alert';
 
+import { TimerPipe } from '../pipes/timer/timer';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -36,6 +38,7 @@ import { AlertProvider } from '../providers/alert/alert';
     SettingsPage,
     MemberManagementPage,
     PreWorkoutPage,
+    TimerPipe,
     StartWorkoutPage,
     HeaderMenuComponent
   ],

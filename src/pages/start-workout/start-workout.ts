@@ -8,7 +8,6 @@ import { LocalStorageProvider } from '../../providers/local-storage/local-storag
 import { AlertProvider } from '../../providers/alert/alert';
 
 import { HomePage } from '../home/home';
-import { WorkoutsPage } from '../workouts/workouts';
 
 @IonicPage()
 @Component({

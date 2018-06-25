@@ -3,7 +3,7 @@ import { App, Platform } from 'ionic-angular';
 
 import { HomePage } from '../../pages/home/home';
 import { AboutPage } from '../../pages/about/about';
-import { SettingsPage } from '../../pages/settings/settings';
+// import { SettingsPage } from '../../pages/settings/settings';
 import { LoginPage } from '../../pages/login/login';
 import { MemberManagementPage } from '../../pages/member-management/member-management';
 import { WorkoutsPage } from '../../pages/workouts/workouts';

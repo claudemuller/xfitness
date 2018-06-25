@@ -19,7 +19,7 @@ export class RegisterPage {
   private _loading: Loading;
   private _createSuccess: boolean = false;
 
-  constructor(private _navProvider: NavigationProvider,
+  constructor(private _navigationProvider: NavigationProvider,
               private _authProvider: AuthProvider,
               private _alertController: AlertController,
               private _loadingController: LoadingController) {
@@ -51,7 +51,7 @@ export class RegisterPage {
   }
 
   public goToLogin(): void {
-    this._navProvider.popTo(LoginPage);
+    this._navigationProvider.popTo(LoginPage);
   }
 
   private _showLoading(): void {
@@ -73,7 +73,7 @@ export class RegisterPage {
         text: 'OK',
         handler: data => {
           if (this._createSuccess) {
-            this._navProvider.popToRoot();
+            this._navigationProvider.popToRoot();
           }
         }
       }]

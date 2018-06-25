@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, Loading, LoadingController } from 'ionic-angular';
+import { IonicPage, AlertController, Loading, LoadingController } from 'ionic-angular';
 
 import { MembersProvider } from '../../providers/members/members';
+import { NavigationProvider } from '../../providers/navigation/navigation';
+
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -15,11 +18,13 @@ export class MemberManagementPage {
   private _loading: Loading;
 
   constructor(private _membersProvider: MembersProvider,
-              private _loadingController: LoadingController) {
+              private _loadingController: LoadingController,
+              private _navigationProvider: NavigationProvider,
+              private _alertController: AlertController) {
   }
 
   public ionViewDidLoad() {
-    this._showLoading();
+    this._showLoading('Loading members...');
 
     this._membersProvider.getMembers().subscribe(members => {
       this.members = members.data;
@@ -29,7 +34,7 @@ export class MemberManagementPage {
   }
 
   public addMemberClicked(): void {
-    this.members.unshift(this.newMember);
+    this.members.unshift({name: this.newMember});
   }
 
   public removeMemberClicked(memberId: integer): void {
@@ -37,16 +42,39 @@ export class MemberManagementPage {
   }
 
   public saveMembersClicked(): void {
-    this._membersProvider.saveMembers(this.members).subscribe(members => {
-      this.members = members;
+    this._showLoading('Saving members...');
+
+    this._membersProvider.saveMembers(this.members).subscribe(response => {
+      if (response.success) {
+        this._loading.dismiss();
+        this._showPopup('Success', response.message);
+      }
     });
   }
 
-  private _showLoading(): void {
+  private _showLoading(message: string): void {
     this._loading = this._loadingController.create({
-      content: 'Fetching members...'
+      content: message
     });
 
+
     this._loading.present();
+  }
+
+  private _showPopup(title: string, text: string): void {
+    this._loading.dismiss();
+
+    const alert = this._alertController.create({
+      title,
+      subTitle: text,
+      buttons: [{
+        text: 'OK',
+        handler: data => {
+          this._navigationProvider.setRoot(HomePage);
+        }
+      }]
+    });
+
+    alert.present();
   }
 }

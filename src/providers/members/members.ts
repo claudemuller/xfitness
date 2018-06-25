@@ -32,7 +32,7 @@ export class MembersProvider {
     const token: string = this._authProvider.currentUser.token,
       body = new HttpParams()
         .set('token', token)
-        .set('members', members);
+        .set('members', JSON.stringify(members));
 
     return this._http.post(this._settingsProvider.apiUrl + '/members', body.toString(), this._httpOptions);
   }

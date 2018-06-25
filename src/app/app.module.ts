@@ -13,6 +13,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { MemberManagementPage } from '../pages/member-management/member-management';
 import { PreWorkoutPage } from '../pages/pre-workout/pre-workout';
 import { StartWorkoutPage } from '../pages/start-workout/start-workout';
+import { WorkoutsPage } from '../pages/workouts/workouts';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -40,6 +41,7 @@ import { TimerPipe } from '../pipes/timer/timer';
     PreWorkoutPage,
     TimerPipe,
     StartWorkoutPage,
+    WorkoutsPage,
     HeaderMenuComponent
   ],
   imports: [
@@ -57,7 +59,8 @@ import { TimerPipe } from '../pipes/timer/timer';
     SettingsPage,
     MemberManagementPage,
     PreWorkoutPage,
-    StartWorkoutPage
+    StartWorkoutPage,
+    WorkoutsPage
   ],
   providers: [
     StatusBar,

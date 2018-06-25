@@ -7,11 +7,10 @@ export class SettingsProvider {
   private _apiUrl: string;
   private _name: string;
 
-  constructor() {
-
+  constructor(private _authProvider: AuthProvider) {
     // get from localstorage and use that if not use default
-    this._apiUrl = 'http://xfitness.local/api'; //s://xfitness.dxt.rs/api';
-    this._name = 'test';//this._authProvider.currentUser().name;
+    this._apiUrl = 'https://xfitness.dxt.rs/api';
+    this._name = this._authProvider.currentUser().name;
   }
 
   get apiUrl(): string {

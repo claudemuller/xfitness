@@ -28,6 +28,12 @@ export class WorkoutsProvider {
     this._localStorageProvider.startWorkout();
   }
 
+  public getWorkouts(): any {
+    const token: string = this._authProvider.currentUser.token;
+
+    return this._http.get(`${this._settingsProvider.apiUrl}/workouts?token=${token}`, this._httpOptions);
+  }
+
   public saveWorkout(members, workoutStart: number, workoutEnd: number): Observable<any> {
     const token: string = this._authProvider.currentUser.token,
       body = new HttpParams()

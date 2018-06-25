@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>Workouts</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding text-center>
+  <ion-list>
+    <button ion-item *ngFor="let workout of workouts">
+      <strong>Date:</strong> {{workout.session_start}} - {{workout.session_end}}<br>
+      <strong>Duration:</strong> {{workout.duration | timer}}
+    </button>
+  </ion-list>
+</ion-content>

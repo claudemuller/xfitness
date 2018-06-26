@@ -12,7 +12,11 @@
   <ion-list>
     <button ion-item *ngFor="let workout of workouts">
       <strong>Date:</strong> {{workout.session_start}} - {{workout.session_end}}<br>
-      <strong>Duration:</strong> {{workout.duration | timer}}
+      <strong>Duration:</strong> {{workout.duration | timer}}<br>
+      <strong>Attendees:</strong>
+      <ion-list>
+        <ion-item *ngFor="let member of workout.members">{{member.name}}</ion-item>
+      </ion-list>
     </button>
   </ion-list>
 </ion-content>

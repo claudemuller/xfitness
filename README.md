@@ -1,5 +1,5 @@
 # XFitness
-The XFitness mobile app created in Ionic 3 which works with the [XFitness Laravel API](https://github.com/claudemuller/xfitness-api)
+The XFitness mobile app created in Ionic 4 which works with the [XFitness Laravel API](https://github.com/claudemuller/xfitness-api)
 
 ## Installation
 1. In the root directory run `npm install`
